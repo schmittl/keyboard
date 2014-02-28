@@ -1,10 +1,10 @@
-; Autohotkey Capslock Remapping Script 
+ï»¿; Autohotkey Capslock Remapping Script 
 ; Credit goes to Danik @ danikgames.com and Gustavo Duarte @ duartes.org
 ; 
 ; Functionality:
 ; - Deactivates capslock for normal use.
 ; - Access the following functions when pressing Capslock:
-;	;, ', [ 	-> ö, ä, ü
+;	;, ', [ 	-> Ã¶, Ã¤, Ã¼
 ;	Cursor Keys	-> hjkl (left, down, up, right)
 ;	Home, End 	-> u, o
 ;	PageUp, PageDown-> z, p
@@ -44,15 +44,15 @@ Capslock & p up::SendInput {Blind}{PgDn Up}
 Capslock & z::SendInput {Blind}{PgUp Down}
 Capslock & z up::SendInput {Blind}{PgUp Up}
 
-; Capslock + ;'[ (öäü)
-Capslock & `;::SendInput {Blind}{ö Down}
-Capslock & `; up::SendInput {Blind}{ö Up}
+; Capslock + ;'[ (Ã¶Ã¤Ã¼)
+Capslock & `;::SendInput {Blind}{Ã¶ Down}
+Capslock & `; up::SendInput {Blind}{Ã¶ Up}
 
-Capslock & '::SendInput {Blind}{ä Down}
-Capslock & ' up::SendInput {Blind}{ä Up}
+Capslock & '::SendInput {Blind}{Ã¤ Down}
+Capslock & ' up::SendInput {Blind}{Ã¤ Up}
 
-Capslock & [::SendInput {Blind}{ü Down}
-Capslock & [ up::SendInput {Blind}{ü Up}
+Capslock & [::SendInput {Blind}{Ã¼ Down}
+Capslock & [ up::SendInput {Blind}{Ã¼ Up}
 
 
 ; Make Win Key + Capslock work like Capslock
