@@ -4,11 +4,11 @@
 ; Functionality:
 ; - Deactivates capslock for normal use.
 ; - Access the following functions when pressing Capslock:
+;	;, ', [ 	-> ö, ä, ü
 ;	Cursor Keys	-> hjkl (left, down, up, right)
-;	Home, End 	-> u,o
-;	PageUp, PageDown-> p,ö
+;	Home, End 	-> u, o
+;	PageUp, PageDown-> z, p
 ;	Delete		-> i
-;	Escape		-> f
 ;	Windows 	-> Capslock
 #Persistent
 SetCapsLockState, AlwaysOff
@@ -28,7 +28,7 @@ Capslock & l::Send {Blind}{Right DownTemp}
 Capslock & l up::Send {Blind}{Right Up}
 
 
-; Capslock + iuopö (delete, home, end, pgdown, pgup)
+; Capslock + iuop; (delete, home, end, pgdown, pgup)
 Capslock & u::SendInput {Blind}{Home Down}
 Capslock & u up::SendInput {Blind}{Home Up}
 
@@ -38,24 +38,22 @@ Capslock & i up::SendInput {Blind}{Delete Up}
 Capslock & o::SendInput {Blind}{End Down}
 Capslock & o up::SendInput {Blind}{End Up}
 
-Capslock & p::SendInput {Blind}{PgUp Down}
-Capslock & p up::SendInput {Blind}{PgUp Up}
+Capslock & p::SendInput {Blind}{PgDn Down}
+Capslock & p up::SendInput {Blind}{PgDn Up}
 
-Capslock & ö::SendInput {Blind}{PgDn Down}
-Capslock & ö up::SendInput {Blind}{PgDn Up}
+Capslock & z::SendInput {Blind}{PgUp Down}
+Capslock & z up::SendInput {Blind}{PgUp Up}
 
-; Capslock + 7890 ( {[]} )
-Capslock & 7::SendInput {Blind}{{ Down}
-Capslock & 7 up::SendInput {Blind}{{ Up}
+; Capslock + ;'[ (öäü)
+Capslock & `;::SendInput {Blind}{ö Down}
+Capslock & `; up::SendInput {Blind}{ö Up}
 
-Capslock & 8::SendInput {Blind}{[ Down}
-Capslock & 8 up::SendInput {Blind}{[ Up}
+Capslock & '::SendInput {Blind}{ä Down}
+Capslock & ' up::SendInput {Blind}{ä Up}
 
-Capslock & 9::SendInput {Blind}{] Down}
-Capslock & 9 up::SendInput {Blind}{] Up}
+Capslock & [::SendInput {Blind}{ü Down}
+Capslock & [ up::SendInput {Blind}{ü Up}
 
-Capslock & 0::SendInput {Blind}{} Down}
-Capslock & 0 up::SendInput {Blind}{} Up}
 
 ; Make Win Key + Capslock work like Capslock
 #Capslock::
@@ -64,7 +62,3 @@ If GetKeyState("CapsLock", "T") = 1
 Else 
     SetCapsLockState, AlwaysOn
 Return
-
-; Capslock + f (Escape)
-Capslock & f::SendInput {Blind}{Escape Down}
-Capslock & f up::SendInput {Blind}{Escape Up}
