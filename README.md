@@ -1,4 +1,4 @@
-ahk
+modcaps
 ===
 
 Small script for AutoHotKey to let Capslock act as an additional modifier. 
