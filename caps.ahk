@@ -1,18 +1,38 @@
-﻿; Autohotkey Capslock Remapping Script 
-; Credit goes to Danik @ danikgames.com and Gustavo Duarte @ duartes.org
-; 
-; Functionality:
-; - Deactivates capslock for normal use.
-; - Access the following functions when pressing Capslock:
-;	;, ', [ 	-> ö, ä, ü
-;	Cursor Keys	-> hjkl (left, down, up, right)
-;	Home, End 	-> u, o
-;	PageUp, PageDown-> z, p
-;	Delete		-> i
-;	Windows 	-> Capslock
+; Inspired by / Credit goes to
+; Danik @ http://danikgames.com/blog/?p=714
+; Gustavo Duarte @ http://duartes.org/gustavo/blog/post/home-row-computing/
+;
+; Functionality of this script:
+; - Deactivates the normal Capslock functionality
+; - Lets Capslock instead act like an additional modifier
+; - Provides the following functions while Capslock is pressed:
+;	            ; -> ö
+;               ' -> ä
+;	            [ -> ü
+;	   h, j, k, l -> left, down, up, right
+;	         u, o -> Home, End
+;            z, p -> PageUp, PageDown
+;	            i -> Delete
+;	      Windows -> Capslock
+; - This script relies on a custom qwertz based layout of the keyboard
+
 #Persistent
 SetCapsLockState, AlwaysOff
 
+; Programs in which the Key mappings are disabled
+GroupAdd, Virtual_Software_Window, ahk_exe VirtualBox.exe
+GroupAdd, Virtual_Software_Window, ahk_exe vmware.exe
+
+Loop
+{
+IfWinActive, ahk_group Virtual_Software_Window
+	Suspend, On
+WinWaitNotActive, ahk_group Virtual_Software_Window
+	Suspend, Off
+Sleep, 100
+}
+
+; Key mappings
 
 ; Capslock + hjkl (left, down, right, up)
 Capslock & h::Send {Blind}{Left DownTemp}
@@ -56,9 +76,12 @@ Capslock & [ up::SendInput {Blind}{ü Up}
 
 
 ; Make Win Key + Capslock work like Capslock
-#Capslock::
+RWin & Capslock::
 If GetKeyState("CapsLock", "T") = 1
     SetCapsLockState, AlwaysOff
-Else 
+Else
     SetCapsLockState, AlwaysOn
 Return
+
+; Make Ctrl + Space force always-on-top on a window
+; ^SPACE::  Winset, Alwaysontop, , A

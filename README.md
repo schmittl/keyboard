@@ -1,11 +1,8 @@
 ahk
 ===
 
-Small script for AutoHotKey, adding more useful functionality to Capslock.
-
-- caps.exe  contains a standalone version of the script which can be used when AutoHotKey is not installed. It will probably only work on 64-bit systems.
-- caps.ahk  contains the actual script
+Small script for AutoHotKey to let Capslock act as an additional modifier. 
 
 ![alt text](Layout.png "Layout")
 
-[License](LICENSE)
+Files are released under the unlicense. http://unlicense.org/
