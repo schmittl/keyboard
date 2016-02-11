@@ -1,8 +1,10 @@
-modcaps
+keyboard
 ===
+This repository contains my keyboard setup which consists of
 
-Small script for AutoHotKey to let Capslock act as an additional modifier. 
+* (ahk/)[ahk/] Script for AutoHotKey to let Capslock act as an additional modifier. 
+* (us-ger/)[us-ger] Customized keyboard layout for MSKLC.
 
-![alt text](Layout.png "Layout")
+![alt text](ahk/Layout.png "caps.ahk Layout")
 
-Files are released under the unlicense. http://unlicense.org/
+Files are released under the (unlicense)[LICENSE]. http://unlicense.org/
