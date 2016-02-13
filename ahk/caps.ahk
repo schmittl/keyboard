@@ -29,7 +29,6 @@ IfWinActive, ahk_group Virtual_Software_Window
 	Suspend, On
 WinWaitNotActive, ahk_group Virtual_Software_Window
 	Suspend, Off
-Sleep, 100
 }
 
 ; Key mappings
