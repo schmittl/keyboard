@@ -1,4 +1,4 @@
-; Inspired by / Credit goes to
+﻿; Inspired by / Credit goes to
 ; Danik @ http://danikgames.com/blog/?p=714
 ; Gustavo Duarte @ http://duartes.org/gustavo/blog/post/home-row-computing/
 ;
@@ -18,18 +18,6 @@
 
 #Persistent
 SetCapsLockState, AlwaysOff
-
-; Programs in which the Key mappings are disabled
-GroupAdd, Virtual_Software_Window, ahk_exe VirtualBox.exe
-GroupAdd, Virtual_Software_Window, ahk_exe vmware.exe
-
-Loop
-{
-IfWinActive, ahk_group Virtual_Software_Window
-	Suspend, On
-WinWaitNotActive, ahk_group Virtual_Software_Window
-	Suspend, Off
-}
 
 ; Key mappings
 
@@ -84,3 +72,15 @@ Return
 
 ; Make Ctrl + Space force always-on-top on a window
 ; ^SPACE::  Winset, Alwaysontop, , A
+
+; Programs in which the Key mappings are disabled
+GroupAdd, Virtual_Software_Window, ahk_exe VirtualBox.exe
+GroupAdd, Virtual_Software_Window, ahk_exe vmware.exe
+
+Loop
+{
+IfWinActive, ahk_group Virtual_Software_Window
+	Suspend, On
+WinWaitNotActive, ahk_group Virtual_Software_Window
+	Suspend, Off
+}
