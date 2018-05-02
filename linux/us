@@ -1,0 +1,39 @@
+// Add this e.g. to the end of /usr/share/X11/xkb/symbols/us
+
+partial alphanumeric_keys
+xkb_symbols "us-ger" {
+
+    // include all the definitions from us(basic), we just want to add to it
+
+    include "us(basic)"
+    name[Group1]= "English (US, with german umlauts)";
+
+    key <AB01> { [           y,          Y                         ] };
+    key <AC02> { [           s,          S,     ssharp,     ssharp ] };
+
+    key <AD06> { [           z,          Z,      Prior,      Prior ] };
+    key <AD07> { [           u,          U,       Home,       Home ] };
+    key <AD08> { [           i,          I,     Delete,     Delete ] };
+    key <AD09> { [           o,          O,        End,        End ] };
+    key <AD10> { [           p,          P,       Next,       Next ] };
+    key <AD11> { [ bracketleft,  braceleft, udiaeresis, Udiaeresis ] };
+
+    key <AC06> { [           h,          H,       Left,       Left ] };
+    key <AC07> { [           j,          J,       Down,       Down ] };
+    key <AC08> { [           k,          K,         Up,         Up ] };
+    key <AC09> { [           l,          L,      Right,      Right ] };
+    key <AC10> { [   semicolon,      colon, odiaeresis, Odiaeresis ] };
+    key <AC11> { [  apostrophe,   quotedbl, adiaeresis, Adiaeresis ] };
+
+    // The CapsLock key (while pressed) chooses the third shift level
+    include "level3(caps_switch)"
+};
+
+// Add the following to the end of the variantList for English (US) in the XML file /usr/share/X11/xkb/rules/evdev.xml
+
+<variant>
+<configItem>
+    <name>us-ger</name>
+    <description>English (US, with german umlauts)</description>
+</configItem>
+</variant>

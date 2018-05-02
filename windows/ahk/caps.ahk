@@ -2,21 +2,24 @@
 ; Danik @ http://danikgames.com/blog/?p=714
 ; Gustavo Duarte @ http://duartes.org/gustavo/blog/post/home-row-computing/
 ;
+; This script relies on a custom qwertz based layout of the keyboard
+;
 ; Functionality of this script:
 ; - Deactivates the normal Capslock functionality
 ; - Lets Capslock instead act like an additional modifier
 ; - Provides the following functions while Capslock is pressed:
 ;	            ; -> ö
-;               ' -> ä
+;                   ' -> ä
 ;	            [ -> ü
 ;	   h, j, k, l -> left, down, up, right
 ;	         u, o -> Home, End
-;            z, p -> PageUp, PageDown
+;            z, p     -> PageUp, PageDown
 ;	            i -> Delete
 ;	      Windows -> Capslock
-; - This script relies on a custom qwertz based layout of the keyboard
-
 #Persistent
+
+#IfWinNotActive ahk_exe VirtualBox.exe
+
 SetCapsLockState, AlwaysOff
 
 ; Key mappings
@@ -73,14 +76,12 @@ Return
 ; Make Ctrl + Space force always-on-top on a window
 ; ^SPACE::  Winset, Alwaysontop, , A
 
-; Programs in which the Key mappings are disabled
-GroupAdd, Virtual_Software_Window, ahk_exe VirtualBox.exe
-GroupAdd, Virtual_Software_Window, ahk_exe vmware.exe
+; Workaround for VirtualBox + xkb
 
-Loop
-{
-IfWinActive, ahk_group Virtual_Software_Window
-	Suspend, On
-WinWaitNotActive, ahk_group Virtual_Software_Window
-	Suspend, Off
-}
+#IfWinActive ahk_exe VirtualBox.exe
+SetCapsLockState, Off
+
+~CapsLock::
+KeyWait, CapsLock
+SetCapsLockState, Off
+return

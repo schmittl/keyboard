@@ -1,0 +1,7 @@
+* text=auto
+
+*.ahk text eol=crlf
+*.bat text eol=crlf
+*.klc text eol=crlf
+
+*.png binary

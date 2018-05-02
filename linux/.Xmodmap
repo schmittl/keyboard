@@ -1,0 +1,22 @@
+! Remove Caps Lock
+clear lock
+
+! Assign Mode_switch modifier to Capslock key
+keycode  66 = Mode_switch Mode_switch
+
+! Normal, Shift, Mode_switch, Mode_switch + Shift, AltGr, AltGr + Shift
+keycode  29 = z Z Prior Prior
+keycode  52 = y Y y Y
+
+keycode  30 = u U Home Home
+keycode  31 = i I Delete Delete
+keycode  32 = o O End End
+keycode  33 = p P Next Next
+keycode  34 = bracketleft braceleft udiaeresis Udiaeresis
+
+keycode  43 = h H Left Left
+keycode  44 = j J Down Down
+keycode  45 = k K Up Up
+keycode  46 = l L Right Right
+keycode  47 = semicolon colon odiaeresis Odiaeresis
+keycode  48 = apostrophe quotedbl adiaeresis Adiaeresis

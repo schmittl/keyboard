@@ -1,9 +1,4 @@
 Thumbs.db
 release/
 *.exe
-us-ger/amd64/
-us-ger/i386/
-us-ger/ia64/
-us-ger/wow64/
-us-ger/layout
 *.msi
