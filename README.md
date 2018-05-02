@@ -6,7 +6,7 @@ This repository contains my keyboard setup for Linux and Windows. The idea is to
 
 ## Usage
 
-Downloaded the [latest release](https://github.com/schmittl/keyboard/releases/latest)
+Downloaded the [latest release](https://github.com/schmittl/keyboard/releases/latest) for Linux or Windows
 
 ### Linux 
 
@@ -21,13 +21,16 @@ Run `create_startup_shortcut.bat` to install a shortcut in the startup folder th
 
 ### Linux
 
-Under Linux using XKB seems to work best across different DEs. Configuration via .Xmodmap is also possible, but deprecated.
+Under Linux using XKB seems to work best across different DEs. XKB configuration is achieved by adding entries to a symbol and a rules file.
+
+Configuration via .Xmodmap is also possible, but deprecated.
 
 ### Windows
 
 Under Windows two different components are used:
 
 [ahk/](windows/ahk/) Script for AutoHotKey to let Capslock act as an additional modifier.
+
 [us-ger/](windows/us-ger/) Customized US keyboard layout. Requires MSKLC to build the layout.
 
 The us-ger keyboard layout is used to provide a reliable remapping of the z and y keys in some applications and to add a few additional keys via the AltGr modifier to the default US layout.
