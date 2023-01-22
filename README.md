@@ -20,10 +20,6 @@ See `xkb/us`
 
 See `keyd/default.conf`
 
-#### kbd
-
-todo
-
 #### Xmodmap (deprecated)
 
 See `xmodmap/.Xmodmap`
@@ -38,9 +34,9 @@ See `xmodmap/.Xmodmap`
 
 ### Linux
 
-Under Linux using `xkb` seems to work best across different DEs. `xkb` configuration is achieved by adding entries to a symbol and a rules file.
+Under Linux using `xkb` seems to work best across different DEs, although it does not work in virtual consoles. `xkb` configuration is achieved by adding entries to a symbol and a rules file.
 
-Alternatively `keyd` can be used to recreate the same keyboard layout.
+Alternatively `keyd` can be used to recreate the same keyboard layout and also works in virtual consoles. 
 
 Configuration via `xmodmap` is also possible, but it is a deprecated mechanism.
 
@@ -54,12 +50,17 @@ Under Windows two different components are used:
 
 The us-ger keyboard layout is used to provide a reliable remapping of the z and y keys in some applications and to add a few additional keys via the AltGr modifier to the default US layout.
 
-### Packaging notes
+## Known issues
+
+keyd is unable to remap 'less / greater'-key on international keyboards :(
+
+## Packaging instructions
 
 Create keyboard layout installation files via [MSKLC](https://www.microsoft.com/en-us/download/details.aspx?id=102134) `Project -> Build DLL and Setup Package`.
 
 Compile caps.ahk into `.exe`. The resulting `.exe` does not require AHK to be installed on the system.
 
+Create release archive
 ```bash
 # first move everything release folder
 # then create release archive

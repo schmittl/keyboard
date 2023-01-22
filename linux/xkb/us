@@ -24,6 +24,7 @@ xkb_symbols "us-ger" {
     key <AC09> { [           l,          L,      Right,      Right ] };
     key <AC10> { [   semicolon,      colon, odiaeresis, Odiaeresis ] };
     key <AC11> { [  apostrophe,   quotedbl, adiaeresis, Adiaeresis ] };
+    key <LSGT> { [   backslash,        bar                         ] };
 
     // The CapsLock key (while pressed) chooses the third shift level
     include "level3(caps_switch)"
