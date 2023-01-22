@@ -8,22 +8,41 @@ This repository contains my keyboard setup for Linux and Windows. The idea is to
 
 Downloaded the [latest release](https://github.com/schmittl/keyboard/releases/latest) for Linux or Windows
 
-### Linux 
+### Linux
 
-Install the xkb files.
+You only need to use one of the following methods
+
+#### xkb (X keyboard extension)
+
+See `xkb/us`
+
+#### keyd
+
+See `keyd/default.conf`
+
+#### kbd
+
+todo
+
+#### Xmodmap (deprecated)
+
+See `xmodmap/.Xmodmap`
 
 ### Windows
 
-Run `setup.exe` to install the custom keyboard layout.
-Run `create_startup_shortcut.bat` to install a shortcut in the startup folder that runs the AutoHotKey script.
+* Run `setup.exe` to install the custom keyboard layout.
+* Run `create_startup_shortcut.bat` to install a shortcut in the startup folder that runs the AutoHotKey script automatically when Windows is started.
+    * Alternatively press `Win + R`, run `shell:common startup` and copy the `caps.exe` to this folder.
 
 ## How it works
 
 ### Linux
 
-Under Linux using XKB seems to work best across different DEs. XKB configuration is achieved by adding entries to a symbol and a rules file.
+Under Linux using `xkb` seems to work best across different DEs. `xkb` configuration is achieved by adding entries to a symbol and a rules file.
 
-Configuration via .Xmodmap is also possible, but deprecated.
+Alternatively `keyd` can be used to recreate the same keyboard layout.
+
+Configuration via `xmodmap` is also possible, but it is a deprecated mechanism.
 
 ### Windows
 
@@ -37,8 +56,15 @@ The us-ger keyboard layout is used to provide a reliable remapping of the z and 
 
 ### Packaging notes
 
-Create keyboard layout installation files via MSKLC `Project -> Build DLL and Setup Package`.
+Create keyboard layout installation files via [MSKLC](https://www.microsoft.com/en-us/download/details.aspx?id=102134) `Project -> Build DLL and Setup Package`.
+
 Compile caps.ahk into `.exe`. The resulting `.exe` does not require AHK to be installed on the system.
+
+```bash
+# first move everything release folder
+# then create release archive
+tar -czvf release.tar.gz release
+```
 
 ## License
 
