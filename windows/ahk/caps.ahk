@@ -2,86 +2,101 @@
 ; Danik @ http://danikgames.com/blog/?p=714
 ; Gustavo Duarte @ http://duartes.org/gustavo/blog/post/home-row-computing/
 ;
-; This script relies on a custom qwertz based layout of the keyboard
+; This script relies on my custom qwertz based layout of the keyboard
 ;
 ; Functionality of this script:
 ; - Deactivates the normal Capslock functionality
 ; - Lets Capslock instead act like an additional modifier
-; - Provides the following functions while Capslock is pressed:
-;	            ; -> ö
-;                   ' -> ä
-;	            [ -> ü
-;	   h, j, k, l -> left, down, up, right
-;	         u, o -> Home, End
-;            z, p     -> PageUp, PageDown
-;	            i -> Delete
-;	      Windows -> Capslock
-#Persistent
+; - Provides the following hotkey functions while Capslock is pressed:
+;                ; -> ö
+;                ' -> ä
+;                [ -> ü
+;       h, j, k, l -> left, down, up, right
+;             u, o -> Home, End
+;             z, p -> PageUp, PageDown
+;                i -> Delete
+;    Right Windows -> Capslock
+#Requires AutoHotkey v2.0
 
-#IfWinNotActive ahk_exe VirtualBox.exe
+; Prevents the script from exiting automatically
+Persistent
 
-SetCapsLockState, AlwaysOff
+; Forces Capslock to stay off permanently
+SetCapsLockState("AlwaysOff")
 
-; Key mappings
+; All following hotkeys are only active outside of Virtualbox
+#HotIf !WinActive("ahk_exe VirtualBoxVM.exe")
 
-; Capslock + hjkl (left, down, right, up)
-Capslock & h::Send {Blind}{Left DownTemp}
-Capslock & h up::Send {Blind}{Left Up}
+; Capslock + h => left
+Capslock & h:: Send("{Blind}{Left DownTemp}")
+Capslock & h up:: Send("{Blind}{Left Up}")
 
-Capslock & j::Send {Blind}{Down DownTemp}
-Capslock & j up::Send {Blind}{Down Up}
+; Capslock + j => down
+Capslock & j:: Send("{Blind}{Down DownTemp}")
+Capslock & j up:: Send("{Blind}{Down Up}")
 
-Capslock & k::Send {Blind}{Up DownTemp}
-Capslock & k up::Send {Blind}{Up Up}
+; Capslock + k => down
+Capslock & k:: Send("{Blind}{Up DownTemp}")
+Capslock & k up:: Send("{Blind}{Up Up}")
 
-Capslock & l::Send {Blind}{Right DownTemp}
-Capslock & l up::Send {Blind}{Right Up}
-
-
-; Capslock + iuop; (delete, home, end, pgdown, pgup)
-Capslock & u::SendInput {Blind}{Home Down}
-Capslock & u up::SendInput {Blind}{Home Up}
-
-Capslock & i::SendInput {Blind}{Delete Down}
-Capslock & i up::SendInput {Blind}{Delete Up}
-
-Capslock & o::SendInput {Blind}{End Down}
-Capslock & o up::SendInput {Blind}{End Up}
-
-Capslock & p::SendInput {Blind}{PgDn Down}
-Capslock & p up::SendInput {Blind}{PgDn Up}
-
-Capslock & z::SendInput {Blind}{PgUp Down}
-Capslock & z up::SendInput {Blind}{PgUp Up}
-
-; Capslock + ;'[ (öäü)
-Capslock & `;::SendInput {Blind}{ö Down}
-Capslock & `; up::SendInput {Blind}{ö Up}
-
-Capslock & '::SendInput {Blind}{ä Down}
-Capslock & ' up::SendInput {Blind}{ä Up}
-
-Capslock & [::SendInput {Blind}{ü Down}
-Capslock & [ up::SendInput {Blind}{ü Up}
+; Capslock + l => right
+Capslock & l:: Send("{Blind}{Right DownTemp}")
+Capslock & l up:: Send("{Blind}{Right Up}")
 
 
-; Make Win Key + Capslock work like Capslock
+; Capslock + u => home
+Capslock & u:: SendInput("{Blind}{Home Down}")
+Capslock & u up:: SendInput("{Blind}{Home Up}")
+
+; Capslock + i => delete
+Capslock & i:: SendInput("{Blind}{Delete Down}")
+Capslock & i up:: SendInput("{Blind}{Delete Up}")
+
+; Capslock + o => end
+Capslock & o:: SendInput("{Blind}{End Down}")
+Capslock & o up:: SendInput("{Blind}{End Up}")
+
+; Capslock + p => page down
+Capslock & p:: SendInput("{Blind}{PgDn Down}")
+Capslock & p up:: SendInput("{Blind}{PgDn Up}")
+
+; Capslock + z => page up
+Capslock & z:: SendInput("{Blind}{PgUp Down}")
+Capslock & z up:: SendInput("{Blind}{PgUp Up}")
+
+
+; Capslock + ; => ö
+Capslock & `;:: SendInput("{Blind}{ö Down}")
+Capslock & `; up:: SendInput("{Blind}{ö Up}")
+
+; Capslock + ' => ä
+Capslock & ':: SendInput("{Blind}{ä Down}")
+Capslock & ' up:: SendInput("{Blind}{ä Up}")
+
+; Capslock + [ => ü
+Capslock & [:: SendInput("{Blind}{ü Down}")
+Capslock & [ up:: SendInput("{Blind}{ü Up}")
+
+
+; Make RWin Key + Capslock toggle Capslock
 RWin & Capslock::
-If GetKeyState("CapsLock", "T") = 1
-    SetCapsLockState, AlwaysOff
-Else
-    SetCapsLockState, AlwaysOn
-Return
+{
+    If GetKeyState("CapsLock", "T") = 1
+        SetCapsLockState("AlwaysOff")
+    Else
+        SetCapsLockState("AlwaysOn")
+    Return
+}
 
-; Make Ctrl + Space force always-on-top on a window
-; ^SPACE::  Winset, Alwaysontop, , A
+; Rest is commented out as it does seem to work properly
 
-; Workaround for VirtualBox + xkb
+; Following hotkeys are only active inside Virtualbox
+;#HotIf WinActive("ahk_exe VirtualBoxVM.exe")
 
-#IfWinActive ahk_exe VirtualBox.exe
-SetCapsLockState, Off
-
-~CapsLock::
-KeyWait, CapsLock
-SetCapsLockState, Off
-return
+;setCapsLockState("Off")
+;~Capslock::
+;{
+;    KeyWait("CapsLock")
+;    SetCapsLockState("Off")
+;    return
+;}
